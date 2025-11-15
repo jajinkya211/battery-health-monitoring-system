@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: batteryuser
+      POSTGRES_PASSWORD: batterypass
+      POSTGRES_DB: battery_health_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+
+  backend:
+    build: .
+    command: uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://batteryuser:batterypass@postgres:5432/battery_health_db
+    depends_on:
+      - postgres
+
+  dashboard:
+    build: .
+    command: python -m frontend.dashboard
+    volumes:
+      - .:/app
+    ports:
+      - "8050:8050"
+    environment:
+      - API_HOST=backend
+      - API_PORT=8000
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
