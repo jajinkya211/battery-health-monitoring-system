@@ -167,7 +167,7 @@ docker-compose down
 
 ---
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### 1. Upload Battery Measurement Data
 
@@ -209,7 +209,7 @@ curl -X POST "http://localhost:8000/measurements" \
 
 ---
 
-## 🔬 Health Calculation Methodology
+## Health Calculation Methodology
 
 ### State of Charge (SoC)
 - **Method**: Open Circuit Voltage (OCV) lookup table with linear interpolation
@@ -336,7 +336,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Ajinkya Jadhav**
 - GitHub: [@jajinkya211](https://github.com/jajinkya211)
-- LinkedIn: [Your Name](https://linkedin.com/in/jajinkya211)
+- LinkedIn: [Ajinkya](https://linkedin.com/in/jajinkya211)
 
 ---
 
